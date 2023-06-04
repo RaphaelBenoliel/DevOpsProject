@@ -1,11 +1,11 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/configuration-reference
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
 
+# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
+# See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
-  node: circleci/node
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/configuration-reference/#jobs
+  node: circleci/node@4.7
+
 jobs:
   cicd-tests-and-lint:
     executor:
@@ -21,9 +21,10 @@ jobs:
       - run:
           name: Run linter
           command: npm run lint
-      # - run:
-      #     name: CD - Deploy the service
-      #     command: curl "https://api.render.com/deploy/srv-chtj9rd269vccp69ka0g?key=3AQH11g2ddg"
+      - run: 
+          name: CD - Deploy the service
+          command: curl "https://api.render.com/deploy/srv-cggq95u4daddcg5bi3lg?key=RGWdF_OJ_JI"
+
 workflows:
   example-workflow:
     jobs:
