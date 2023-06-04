@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" type="text/css" href="./register.css">
+</head>
+<body>
+  <div class="register-container">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Name" required class="text-input">
+
+      <label for="grade1">Grade 1:</label>
+      <input type="number" id="grade1" name="grade1" placeholder="Grade 1" required min="0" max="100" class="text-input">
+
+      <label for="grade2">Grade 2:</label>
+      <input type="number" id="grade2" name="grade2" placeholder="Grade 2" required min="0" max="100" class="text-input">
+
+      <label for="grade3">Grade 3:</label>
+      <input type="number" id="grade3" name="grade3" placeholder="Grade 3" required min="0" max="100" class="text-input">
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+  
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', handleSubmit);
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const grade1 = Number(document.getElementById('grade1').value);
+      const grade2 = Number(document.getElementById('grade2').value);
+      const grade3 = Number(document.getElementById('grade3').value);
+
+      if (grade1 < 0 || grade1 > 100 || grade2 < 0 || grade2 > 100 || grade3 < 0 || grade3 > 100) {
+        alert('Please enter valid grades between 0 and 100.');
+        return;
+      }
+
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({
+            name,
+            grade1,
+            grade2,
+            grade3,
+          }),
+        });
+
+        if (response.ok) {
+          console.log('Student registered successfully!');
+          alert('Student registered successfully!');
+          document.getElementById('registerForm').reset();
+        } else {
+          console.error('Error occurred while saving student data.');
+          alert('Error occurred while saving student data.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Error occurred while saving student data.');
+      }
+    }
+  </script>
+</body>
+</html>
