@@ -28,7 +28,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/register.css', (req, res) => {
   res.sendFile(path.join(__dirname, 'register.css'));
 });
-
+app.get('/students', async (req, res) => {
+  try {
+    const students = await Student.find();
+    res.json(students);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error occurred while fetching students data: ' + error.message);
+  }
+});
 // Define the Student model outside of the route handler
 const studentSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },

@@ -23,9 +23,11 @@
       <input type="number" id="grade3" name="grade3" placeholder="Grade 3" required min="0" max="100" class="text-input">
 
       <button type="submit">Register</button>
+      <button type="button" id="showStudentsButton">Show Students</button>
+      <div id="studentList"></div>
     </form>
   </div>
-  
+</body>
   <script>
     document.getElementById('registerForm').addEventListener('submit', handleSubmit);
 
@@ -68,6 +70,62 @@
         console.error(error);
         alert('Error occurred while saving student data.');
       }
+    }
+
+    let isStudentListVisible = false;
+
+    document.getElementById('showStudentsButton').addEventListener('click', toggleStudentList);
+
+    async function toggleStudentList() {
+      if (isStudentListVisible) {
+        hideStudentList();
+      } else {
+        await showStudentList();
+      }
+    }
+
+    async function showStudentList() {
+      try {
+        const response = await fetch('/students');
+
+        if (response.ok) {
+          const students = await response.json();
+          console.log('Students:', students);
+          displayStudents(students);
+          document.getElementById('showStudentsButton').textContent = 'Hide Students';
+          isStudentListVisible = true;
+        } else {
+          console.error('Error occurred while fetching students data.');
+          alert('Error occurred while fetching students data.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Error occurred while fetching students data.');
+      }
+    }
+
+    function hideStudentList() {
+      const studentListContainer = document.getElementById('studentList');
+      studentListContainer.innerHTML = '';
+      document.getElementById('showStudentsButton').textContent = 'Show Students';
+      isStudentListVisible = false;
+    }
+
+    function displayStudents(students) {
+  const studentListContainer = document.getElementById('studentList');
+  studentListContainer.innerHTML = '';
+
+  students.forEach(student => {
+    const studentElement = document.createElement('div');
+    studentElement.classList.add('student-item');
+    studentElement.innerHTML = `
+      <p><span>Name:</span> ${student.name}</p>
+      <p><span>Grade 1:</span> ${student.grade1}</p>
+      <p><span>Grade 2:</span> ${student.grade2}</p>
+      <p><span>Grade 3:</span> ${student.grade3}</p>
+    `;
+    studentListContainer.appendChild(studentElement);
+  });
     }
   </script>
 </body>
