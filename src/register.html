@@ -10,20 +10,16 @@
   <div class="register-container">
     <h2>Register</h2>
     <form id="registerForm">
-      <label for="name">Name:</label>
       <input type="text" id="name" name="name" placeholder="Name" required class="text-input">
 
-      <label for="grade1">Grade 1:</label>
       <input type="number" id="grade1" name="grade1" placeholder="Grade 1" required min="0" max="100" class="text-input">
 
-      <label for="grade2">Grade 2:</label>
       <input type="number" id="grade2" name="grade2" placeholder="Grade 2" required min="0" max="100" class="text-input">
 
-      <label for="grade3">Grade 3:</label>
       <input type="number" id="grade3" name="grade3" placeholder="Grade 3" required min="0" max="100" class="text-input">
 
-      <button type="submit">Register</button>
-      <button type="button" id="showStudentsButton">Show Students</button>
+      <button type="submit" class="registerbutten"><strong>Register</strong></button>
+      <button type="button" class="showStudentsButton" id="showStudentsButton"><strong>Show Students</strong></button>
       <div id="studentList"></div>
     </form>
   </div>
