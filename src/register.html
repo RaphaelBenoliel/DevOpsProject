@@ -19,7 +19,7 @@
       <input type="number" id="grade3" name="grade3" placeholder="Grade 3" required min="0" max="100" class="text-input">
 
       <button type="submit" class="registerbutten"><strong>Register</strong></button>
-      <button type="button" class="showStudentsButton" id="showStudentsButton"><strong>Show Students</strong></button>
+      <button type="button" class="showStudentsButton" id="showStudentsButton">Show All Data</button>
       <div id="studentList"></div>
     </form>
   </div>
@@ -86,9 +86,8 @@
 
         if (response.ok) {
           const students = await response.json();
-          console.log('Students:', students);
           displayStudents(students);
-          document.getElementById('showStudentsButton').textContent = 'Hide Students';
+          document.getElementById('showStudentsButton').textContent = 'Hide All';
           isStudentListVisible = true;
         } else {
           console.error('Error occurred while fetching students data.');
@@ -103,7 +102,7 @@
     function hideStudentList() {
       const studentListContainer = document.getElementById('studentList');
       studentListContainer.innerHTML = '';
-      document.getElementById('showStudentsButton').textContent = 'Show Students';
+      document.getElementById('showStudentsButton').textContent = 'Show All Data';
       isStudentListVisible = false;
     }
 

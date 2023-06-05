@@ -15,7 +15,7 @@ body {
   width: 300px;
   padding: 30px;
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px; /* Add margin-top to create spacing */
 }
@@ -40,7 +40,7 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 10px;
   margin-bottom: 10px;
-  border-radius: 3px;
+  border-radius: 10px;
   border: 1px solid #ccc;
   font-size: 14px;
   box-sizing: border-box;
@@ -49,7 +49,7 @@ body {
 .registerbutten {
   width: 100%;
   padding: 10px;
-  background-color: #4caf50;
+  background-color: #2ba82fd4;
   color: white;
   border: none;
   border-radius: 10px;
@@ -64,7 +64,7 @@ body {
 .showStudentsButton {
   width: 100%;
   padding: 10px;
-  background-color: #07b4e9;
+  background-color: #1681c3e1;
   color: white;
   border: none;
   border-radius: 10px;
@@ -72,15 +72,21 @@ body {
   font-size: 16px;
   display: block;
   margin-top: 20px;
-  transition: background-color 0.3s ease;
+  transition: 0.3s ease;
 }
-
-.registerbutten:hover {
-  background-color: #45a049;
-}
-
 .showStudentsButton:hover {
-  background-color: #455aa0;
+  background-color: #48626aa9;
+}
+.registerbutten:hover {
+  background-color: #29b030dd;
+}
+
+
+
+
+.register-container .text-input::placeholder {
+  color: #000000;
+  
 }
 
 #studentList {
